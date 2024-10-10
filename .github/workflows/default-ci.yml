@@ -16,6 +16,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
+    - uses: lukka/get-cmake@v3.30.5
     - uses: actions/checkout@v4
 
     - name: Configure CMake
