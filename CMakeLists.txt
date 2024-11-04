@@ -14,7 +14,10 @@ endif()
 
 add_compile_options(-g -fdiagnostics-color=always)
 
-aux_source_directory(${CMAKE_SOURCE_DIR}/src SOURCES)
-add_library(picola ${SOURCES})
+# XXX: No explicit source files right now.
+#      Remove the comments if we need to pre-compile something.
 
-target_include_directories(picola PUBLIC ${CMAKE_SOURCE_DIR}/include)
+# aux_source_directory(${CMAKE_SOURCE_DIR}/src SOURCES)
+# add_library(picola ${SOURCES})
+
+# target_include_directories(picola PUBLIC ${CMAKE_SOURCE_DIR}/include)
