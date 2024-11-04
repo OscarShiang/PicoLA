@@ -46,9 +46,13 @@ private:
 template <size_t dim>
 std::ostream &operator<<(std::ostream &os, const vec<dim> &v)
 {
-    os << v.m_buf[0];
-    for (size_t i = 1; i < v.m_dim; ++i) {
-        os << " " << v.m_buf[i];
+    if (v.size() == 0) {
+        return os;
+    }
+
+    os << v(0);
+    for (size_t i = 1; i < v.size(); ++i) {
+        os << " " << v(i);
     }
     return os;
 }
