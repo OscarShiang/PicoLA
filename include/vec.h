@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
+#include <vector>
 
 namespace picola
 {
@@ -13,6 +14,15 @@ public:
     vec()
     {
         memset(m_buf, 0, sizeof(float) * dim);
+    }
+
+    vec(const std::vector<float> &v)
+    {
+        if (m_dim != v.size()) {
+            throw new std::invalid_argument("Dimension mismatch");
+        }
+
+        memcpy(m_buf, v.data(), sizeof(float) * v.size());
     }
 
     float &operator()(size_t idx)
@@ -36,6 +46,43 @@ public:
     size_t size() const
     {
         return m_dim;
+    }
+
+    vec &operator=(const vec &v)
+    {
+        if (m_dim != v.size()) {
+            throw new std::invalid_argument("Dimension mismatch");
+        }
+
+        memcpy(m_buf, v.m_buf, sizeof(float) * m_dim);
+
+        return *this;
+    }
+
+    vec &operator+(const vec &v)
+    {
+        if (m_dim != v.size()) {
+            throw new std::invalid_argument("Dimension mismatch");
+        }
+
+        // TODO: need to switch to faster implementation
+        for (size_t i = 0; i < m_dim; i++) {
+            m_buf[i] += v.m_buf[i];
+        }
+        return *this;
+    }
+
+    vec &operator-(const vec &v)
+    {
+        if (m_dim != v.size()) {
+            throw new std::invalid_argument("Dimension mismatch");
+        }
+
+        // TODO: need to switch to faster implementation
+        for (size_t i = 0; i < m_dim; i++) {
+            m_buf[i] -= v.m_buf[i];
+        }
+        return *this;
     }
 
 private:
