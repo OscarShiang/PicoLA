@@ -39,6 +39,14 @@ TEST(TestVec, AddTest) {
     ss << v1;
 
     EXPECT_EQ(ss.str(), "11 13 15");
+
+    // Constant
+    v1 = v1 + 3.5;
+
+    ss.str("");
+    ss << v1;
+
+    EXPECT_EQ(ss.str(), "14.5 16.5 18.5");
 }
 
 TEST(TestVec, SubTest) {
@@ -51,4 +59,12 @@ TEST(TestVec, SubTest) {
     ss << v1;
 
     EXPECT_EQ(ss.str(), "0.2 0.3 0.4");
+
+    // Constant
+    v1 = v1 - 10.2;
+
+    ss.str("");
+    ss << v1;
+
+    EXPECT_EQ(ss.str(), "-10 -9.9 -9.8");
 }

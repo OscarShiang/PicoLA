@@ -72,6 +72,14 @@ public:
         return *this;
     }
 
+    vec &operator+(const float &f)
+    {
+        for (size_t i = 0; i < m_dim; i++) {
+            m_buf[i] += f;
+        }
+        return *this;
+    }
+
     vec &operator-(const vec &v)
     {
         if (m_dim != v.size()) {
@@ -81,6 +89,14 @@ public:
         // TODO: need to switch to faster implementation
         for (size_t i = 0; i < m_dim; i++) {
             m_buf[i] -= v.m_buf[i];
+        }
+        return *this;
+    }
+
+    vec &operator-(const float &f)
+    {
+        for (size_t i = 0; i < m_dim; i++) {
+            m_buf[i] -= f;
         }
         return *this;
     }
