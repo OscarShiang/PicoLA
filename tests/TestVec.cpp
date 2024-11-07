@@ -3,11 +3,6 @@
 
 #include "vec.h"
 
-TEST(TestVec, NaiveTest) {
-    EXPECT_STRNE("hello", "world");
-    EXPECT_EQ(1 + 1, 2);
-}
-
 TEST(TestVec, SizeTest) {
     picola::vec<3> v1;
 
