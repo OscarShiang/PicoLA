@@ -68,3 +68,33 @@ TEST(TestVec, SubTest) {
 
     EXPECT_EQ(ss.str(), "-10 -9.9 -9.8");
 }
+
+TEST(TestVec, MulTest) {
+    picola::vec<3> v1({5, 4, 3});
+    picola::vec<3> v2({2, 3, 4});
+
+    v1 = v1 * v2;
+
+    std::stringstream ss;
+    ss << v1;
+
+    EXPECT_EQ(ss.str(), "10 12 12");
+
+    v1 = v1 * 0.5;
+
+    ss.str("");
+    ss << v1;
+
+    EXPECT_EQ(ss.str(), "5 6 6");
+}
+
+TEST(TestVec, DivTest) {
+    picola::vec<3> v1({100, 200, 300});
+
+    v1 = v1 / 100;
+
+    std::stringstream ss;
+    ss << v1;
+
+    EXPECT_EQ(ss.str(), "1 2 3");
+}
