@@ -15,10 +15,11 @@ include(GoogleTest)
 
 set(TEST_SOURCE
   TestVec.cpp
+  TestMat.cpp
 )
 
-string(REPLACE ".cpp" "" TEST_BASENAME ${TEST_SOURCE})
-set(TEST_TARGET ${TEST_BASENAME})
+list(TRANSFORM TEST_SOURCE REPLACE ".cpp" "")
+set(TEST_TARGET ${TEST_SOURCE})
 
 foreach(target ${TEST_TARGET})
   add_executable(${target} ${target})
