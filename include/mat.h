@@ -14,17 +14,17 @@ public:
         memset(m_buf, 0, sizeof(float) * R * C);
     }
 
-    size_t nrow()
+    size_t nrow() const
     {
         return m_nrow;
     }
 
-    size_t ncol()
+    size_t ncol() const
     {
         return m_ncol;
     }
 
-    size_t nelem()
+    size_t nelem() const
     {
         return m_nelem;
     }
