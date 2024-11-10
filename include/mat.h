@@ -72,6 +72,58 @@ public:
         return *this;
     }
 
+    mat &operator+(const mat &m)
+    {
+        if (m_nrow != m.nrow() || m_ncol != m.ncol()) {
+            throw std::invalid_argument("Dimension mismatch");
+        }
+
+        for (size_t i = 0; i < m_nrow; i++) {
+            for (size_t j = 0; j < m_ncol; j++) {
+                m_buf[index(i, j)] += m.m_buf[index(i, j)];
+            }
+        }
+        return *this;
+    }
+
+    mat &operator-(const mat &m)
+    {
+        if (m_nrow != m.nrow() || m_ncol != m.ncol()) {
+            throw std::invalid_argument("Dimension mismatch");
+        }
+
+        for (size_t i = 0; i < m_nrow; i++) {
+            for (size_t j = 0; j < m_ncol; j++) {
+                m_buf[index(i, j)] -= m.m_buf[index(i, j)];
+            }
+        }
+        return *this;
+    }
+
+    mat &operator*(const float val)
+    {
+        for (size_t i = 0; i < m_nrow; i++) {
+            for (size_t j = 0; j < m_ncol; j++) {
+                m_buf[index(i, j)] *= val;
+            }
+        }
+        return *this;
+    }
+
+    mat &operator/(const float val)
+    {
+        if (val == 0) {
+            throw std::range_error("Divide by zero");
+        }
+
+        for (size_t i = 0; i < m_nrow; i++) {
+            for (size_t j = 0; j < m_ncol; j++) {
+                m_buf[index(i, j)] /= val;
+            }
+        }
+        return *this;
+    }
+
 private:
     size_t index(size_t row, size_t col) const
     {
