@@ -101,16 +101,18 @@ public:
         return *this;
     }
 
-    vec &operator*(const vec &v)
+    float operator*(const vec &v)
     {
         if (m_dim != v.size()) {
             throw new std::invalid_argument("Dimension mismatch");
         }
 
+        float val = 0;
+
         for (size_t i = 0; i < m_dim; i++) {
-            m_buf[i] *= v.m_buf[i];
+            val += m_buf[i] * v.m_buf[i];
         }
-        return *this;
+        return val;
     }
 
     vec &operator*(const float &f)
