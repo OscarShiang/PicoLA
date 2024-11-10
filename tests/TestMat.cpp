@@ -25,6 +25,17 @@ TEST(Mat, Assign)
     EXPECT_NE(m1(1, 0), 10);
 }
 
+TEST(Mat, OStream)
+{
+    picola::mat<2, 3> m1;
+    m1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+
+    std::stringstream ss;
+    ss << m1;
+
+    EXPECT_EQ(ss.str(), "1\t2\t3\n4\t5\t6");
+}
+
 TEST(Mat, Add)
 {
     picola::mat<3, 2> m1;

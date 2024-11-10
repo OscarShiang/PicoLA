@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <vector>
+#include <ostream>
 
 namespace picola
 {
@@ -143,6 +144,21 @@ private:
 
     float m_buf[R * C];
 };
+
+template <size_t R, size_t C>
+std::ostream &operator<<(std::ostream &os, const mat<R, C> &m)
+{
+    for (size_t i = 0; i < m.nrow(); i++) {
+        os << m(i, 0);
+        for (size_t j = 1; j < m.ncol(); j++) {
+            os << '\t' << m(i, j);
+        }
+        if (i != m.nrow() - 1) {
+            os << '\n';
+        }
+    }
+    return os;
+}
 
 } // namespace picola
 
