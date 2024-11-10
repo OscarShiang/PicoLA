@@ -68,19 +68,16 @@ TEST(Vec, Mul) {
     picola::vec<3> v1({5, 4, 3});
     picola::vec<3> v2({2, 3, 4});
 
-    v1 = v1 * v2;
+    float val = v1 * v2;
+
+    EXPECT_EQ(val, 34);
+
+    v1 = v1 * 0.5;
 
     std::stringstream ss;
     ss << v1;
 
-    EXPECT_EQ(ss.str(), "10 12 12");
-
-    v1 = v1 * 0.5;
-
-    ss.str("");
-    ss << v1;
-
-    EXPECT_EQ(ss.str(), "5 6 6");
+    EXPECT_EQ(ss.str(), "2.5 2 1.5");
 }
 
 TEST(Vec, Div) {
