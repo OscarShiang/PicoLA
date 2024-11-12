@@ -150,19 +150,12 @@ public:
 private:
     size_t index(size_t row, size_t col) const
     {
-        // TODO: Should we implement transpose illusion?
-        if (!false) {
-            return row * m_ncol + col;
-        } else {
-            return col * m_nrow + row;
-        }
+        return row * m_ncol + col;
     }
 
     size_t m_nrow = R;
     size_t m_ncol = C;
     size_t m_nelem = R * C;
-
-    bool m_transpose = false;
 
     float m_buf[R * C];
 };
