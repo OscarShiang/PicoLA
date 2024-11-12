@@ -75,6 +75,25 @@ TEST(Mat, Mul)
     m1 = m1 * 5;
 
     EXPECT_EQ(m1(2, 1), 30);
+
+    picola::mat<2, 3> m2;
+    picola::mat<3, 2> m3;
+
+    m2 = { { 1, 2, 3 }, { 4, 5, 6 } };
+    m3 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+
+    picola::mat<2, 2> m4;
+
+    EXPECT_THROW(m1 * m3, std::invalid_argument);
+
+    m4 = m2 * m3;
+
+    float ans[][2] = { { 58, 64 }, { 139, 154 } };
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            EXPECT_EQ(m4(i, j), ans[i][j]);
+        }
+    }
 }
 
 TEST(Mat, Div)

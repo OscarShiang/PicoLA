@@ -125,6 +125,28 @@ public:
         return *this;
     }
 
+    template <size_t A, size_t B>
+    mat<R, B> operator*(const mat<A, B> &m)
+    {
+        if (m_ncol != m.nrow()) {
+            throw std::invalid_argument("Dimension mismatch");
+        }
+
+        mat<R, B> retm;
+        for (size_t i = 0; i < m_nrow; i++) {
+            for (size_t k = 0; k < m.ncol(); k++) {
+                float val = 0;
+                for (size_t j = 0; j < m_ncol; j++) {
+                    val += m_buf[index(i, j)] * m(j, k);
+                }
+                std::cout << val << std::endl;
+                retm(i, k) = val;
+            }
+        }
+
+        return retm;
+    }
+
 private:
     size_t index(size_t row, size_t col) const
     {
